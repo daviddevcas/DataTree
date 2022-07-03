@@ -34,17 +34,25 @@ public class DataTree {
     }
 
     public void showPostFix(String expression) {
-        JLabel label = new JLabel();
-        label.setText(getExpressionNoToken(convertInfixToPostFixTokens(correctExpression(expression))));
-        label.setFont(Main.getFontLabelPanel());
-        JOptionPane.showMessageDialog(null, label, "Posfija", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            JLabel label = new JLabel();
+            label.setText(getExpressionNoToken(convertInfixToPostFixTokens(correctExpression(expression))));
+            label.setFont(Main.getFontLabelPanel());
+            JOptionPane.showMessageDialog(null, label, "Posfija", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
-    
-    public void showInfix(String expression){
-        JLabel label = new JLabel();
-        label.setText(convertPostFixToInfixTokens(expression));
-        label.setFont(Main.getFontLabelPanel());
-        JOptionPane.showMessageDialog(null, label, "Infija", JOptionPane.INFORMATION_MESSAGE);
+
+    public void showInfix(String expression) {
+        try {
+            JLabel label = new JLabel();
+            label.setText(convertPostFixToInfixTokens(expression));
+            label.setFont(Main.getFontLabelPanel());
+            JOptionPane.showMessageDialog(null, label, "Infija", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     private Node testPostFixTokens(String postFixed) {
@@ -205,13 +213,13 @@ public class DataTree {
             } else {
                 String right = stack.pop();
                 String left = stack.pop();
-                stack.push("("+ left + token + right + ")");
+                stack.push("(" + left + token + right + ")");
             }
         }
-        
-        for(i = 0 ; i< stack.lastElement().length();i++){
+
+        for (i = 0; i < stack.lastElement().length(); i++) {
             char c = stack.lastElement().charAt(i);
-            if(i != 0 && i != stack.lastElement().length()-1){
+            if (i != 0 && i != stack.lastElement().length() - 1) {
                 infix += c;
             }
         }
